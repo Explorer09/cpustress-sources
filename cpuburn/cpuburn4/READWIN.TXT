@@ -1,0 +1,91 @@
+*** WARNING ***    These program is designed to heavily load CPU chips.
+Undercooled, overclocked or otherwise weak systems may fail causing data
+loss (filesystem corruption) and possibly permanent damage to electronic
+components.  Nor will it catch all flaws.   *** USE AT YOUR OWN RISK ***
+
+N E W   burnK7  for  AMD Athlon/Duron/Thurderbird has been released.
+
+These programs are designed to load x86 CPUs as heavily as possible for
+the purposes of system testing.  They have been optimized for different
+processors.  FPU and ALU instructions are coded an assembler endless loop.
+They do not test every instruction.  The goal has been to maximize heat
+production from the CPU, putting stress on the CPU itself, cooling
+system, motherboard (especially voltage regulators) and power supply
+(likely cause of burnBX/MMX errors).
+
+burnP5   is optimized for Intel Pentium w&w/o MMX processors
+    P6   is for Intel PentiumPro, PentiumII&III and Celeron CPUs
+    K6   is for AMD K6 processors
+    K7   is for AMD Athlon/Duron processors
+    MMX  is to test cache/memory interfaces on all CPUs with MMX
+    BX   is an alternate cache/memory test for Intel CPUs
+
+
+burn* will run endlessly _UNLESS_ an arithmetic error is detected.
+Check up on it with the Task Manager.  It will terminate with an
+error code of 1 if a computational error is detected.  It checks
+every 3-8 seconds. I haven't seen any terminations, the CPUs always
+lockup first. Let me know if errors happen to you.
+
+I heartily recommend using Mikael Olsson's `runprio` program (available
+at SimTel) to run burn* at HIGH priority. This reduces system performance
+to crawl, but gives ~5'C hotter CPU temperatures because burn* gets
+96% of all CPU cycles rather than 72% at normal priority.  DO NOT try
+Real-Time Priority, it gets no more. Of course, you can still run
+Sysmon/PerfMon and temperature sensors programs to monitor progress. 
+
+Thanks to Otto Strudel who ported burnK7 and to Kevin Hughes
+<kevin@klsoft.force9.co.uk> who used MING to port my Linux
+sources to the Win32 *.exe's included in the .zip .
+
+
+TO RUN:   runprio -x high burnp6.exe from a DOS box or Start->Run
+TO KILL:  ^C or Ctl-Alt-Del to the TaskManager, highlight & End task.
+
+burnBX and burnMMX are essentially very intense RAM testers.  They can
+also take an optional parameter indicating the RAM size to be tested:
+
+  A =  2 kB   E =  32 kB   I = 512 kB   M =  8 MB
+  B =  4      F =  64      J =   1 MB   N = 16
+  C =  8      G = 128      K =   2      O = 32
+  D = 16      H = 256      L =   4      P = 64
+
+`burnBX L` (4 MB) and `burnMMX F` (64 kB) are the default sizes.
+A-E mostly test L1 cache, F-H test L2 cache, and H-P force their way
+to RAM.  But even A-E will have some cacheline writeouts to RAM.
+
+In spite of it's name, burnBX can be run on any chipset [RAM controller]
+and tests alot more than the RAM controller.  Unfortunately, burnBX is
+not optimal on AMD K6 processors. burnMMX is preferable for any CPU that
+has an MMX unit.
+
+burnBX/MMX needs about 72 MB of total RAM + swap to start (not necessarily
+free), but doesn't use this much unless you request it.  They will
+throw a GPF if you don't have enough swap.  If you don't want to
+add more, you can adjust the .bss section downward as indicated in the
+source comments.  I use very simple memory management. They can also
+test swap, and at least on my system, I can run 2*`burnBX 8` with 128
+MB SDRAM with some use of swap, but no excessive thrashing[seeks]. YMMV.
+
+
+If sub-spec, your system may lock up after 2-10 minutes.  Alternatively,
+`burnBX` is especially likely to terminate with an error.  It shouldn't.
+burn* are just unpriviliged user processes.  But it probably means your
+CPU is undercooled, most likely no thermal grease or other interface
+material between CPU & heatsink.  Or some other deficiency.  A power
+cycle should reset the system.  But you should fix it.
+
+The cpuburn programs  are  copyright, but I grant a licence under the
+GNU Public Licence 2.0 .  See http://www.gnu.org .  This is free
+software, free as in speech, not as in beer.  Also known as
+"Open Source".  The source code is in the *.s files.
+
+
+Robert Redelmeier  redelm@ev1.net
+
+*** WARNING ***    This program is designed to heavily load CPU chips.
+Undercooled, overclocked or otherwise weak systems may fail causing data
+loss (filesystem corruption) and possibly permanent damage to electronic
+components.  Nor will it catch all flaws.   *** USE AT YOUR OWN RISK ***
+
+

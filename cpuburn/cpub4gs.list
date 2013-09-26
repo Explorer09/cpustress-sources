@@ -1,0 +1,39 @@
+# unzip -v cpub4gs.zip
+Archive:  cpub4gs.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+    4371  Defl:N     1171  73% 2001-05-21 22:30 13383af8  CPUburn.dsp
+      84  Defl:N       74  12% 2001-05-21 21:30 d97bcb87  CPUburn.def
+    2280  Defl:N      989  57% 2001-06-06 20:05 2cc444d7  CPUburn.cpp
+     539  Defl:N      209  61% 2001-05-21 20:04 1eabd982  CPUburn.dsw
+     876  Defl:N      535  39% 2001-05-27 19:18 c0ad422c  CPUburn.vbp
+    6859  Defl:N     1546  78% 2001-05-27 19:17 b2bed57c  Form1.frm
+     778  Defl:N      292  63% 2001-05-27 19:17 b8915c25  Form1.frx
+     287  Defl:N      163  43% 2001-05-22 11:00 1e36e606  Module1.bas
+     294  Defl:N      194  34% 2001-05-21 20:04 31847eb7  StdAfx.cpp
+     802  Defl:N      435  46% 2001-05-21 20:04 841a4fb9  StdAfx.h
+--------          -------  ---                            -------
+   17170             5608  67%                            10 files
+
+# 7z l cpub4gs.zip
+Listing archive: cpub4gs.zip
+
+--
+Path = cpub4gs.zip
+Type = zip
+Physical Size = 6594
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+2001-05-21 22:30:20 ....A         4371         1171  CPUburn.dsp
+2001-05-21 21:30:44 ....A           84           74  CPUburn.def
+2001-06-06 20:05:34 ....A         2280          989  CPUburn.cpp
+2001-05-21 20:04:06 ....A          539          209  CPUburn.dsw
+2001-05-27 19:18:08 ....A          876          535  CPUburn.vbp
+2001-05-27 19:17:30 ....A         6859         1546  Form1.frm
+2001-05-27 19:17:30 ....A          778          292  Form1.frx
+2001-05-22 11:00:30 ....A          287          163  Module1.bas
+2001-05-21 20:04:06 ....A          294          194  StdAfx.cpp
+2001-05-21 20:04:06 ....A          802          435  StdAfx.h
+------------------- ----- ------------ ------------  ------------------------
+                                 17170         5608  10 files, 0 folders

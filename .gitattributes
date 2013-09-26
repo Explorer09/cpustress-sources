@@ -1,0 +1,16 @@
+
+*.list text
+*.md text
+
+# Try to match the original line endings in the archives.
+/cpuburn/cpub4gs/* text eol=crlf
+/cpuburn/cpuburn4/* text eol=crlf
+/cpuburn/cpuburn4/*.S text eol=lf
+/cpuburn/cpuburn-1.4a/* text eol=lf
+/stress text eol=lf
+/stresscpu2 text eol=lf
+
+# './stress/configure' has ^M character inside.
+configure -text
+
+*.frx binary

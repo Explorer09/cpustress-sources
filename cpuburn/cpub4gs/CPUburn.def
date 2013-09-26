@@ -1,0 +1,8 @@
+
+LIBRARY CPUburn
+
+
+EXPORTS
+	StartBurn		@1		
+	IsStillBurning		@2
+	Kill_me			@3

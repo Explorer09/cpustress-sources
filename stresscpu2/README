@@ -1,0 +1,18 @@
+1. In most cases you can just use one of the precompiled binaries.
+
+2. To compile, copy one of the makefiles to 'Makefile', and 
+   issue 'make' to create the stresscpu2 binary.
+
+3. If you can't get threads to work at all, you can disable them with -DNO_THREADS.
+   It works just fine to run multiple copies of the program in parallel instead.
+
+4. There is no 64 bit windows binary since I'm not going to go through the effort to 
+   buy & install a 64 bit windows system just to test this program and then throw it
+   out again. Complain to Microsoft :-) 
+   I've created a 64-bit kernel assembly file for masm, but there are likely a couple of
+   typos remaining in it. If you have access to a ml64.exe (64-bit masm) you could do me
+   a favor by trying to compile kernel_x86_64_masm_syntax.s and send me the error listing.
+
+Have fun,
+
+Erik Lindahl <lindahl@cbr.su.se>

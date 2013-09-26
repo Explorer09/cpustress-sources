@@ -1,0 +1,16 @@
+# tar tv --full-time -f cpuburn_1_4a_tar.gz
+drwxr-xr-x rjr/users         0 2010-07-12 20:27:24 cpuburn-1.4a/
+-rw-r--r-- rjr/users      5854 2001-06-16 11:39:17 cpuburn-1.4a/Design
+-rw-r--r-- rjr/users      2505 2001-06-16 11:39:17 cpuburn-1.4a/burnBX.S
+-rw-r--r-- rjr/users      3847 2001-06-16 11:39:17 cpuburn-1.4a/README
+-rw-r--r-- rjr/users      1258 2001-06-16 11:39:17 cpuburn-1.4a/burnK6.S
+-rw-r--r-- rjr/users        80 2001-06-16 11:39:17 cpuburn-1.4a/Makefile
+-rw-r--r-- rjr/users      1397 2001-06-16 11:39:17 cpuburn-1.4a/burnK7.S
+-rw-r--r-- rjr/users      3173 2001-06-16 11:39:17 cpuburn-1.4a/burnMMX.S
+-rw-r--r-- rjr/users      1291 2001-06-16 11:39:17 cpuburn-1.4a/burnP5.S
+-rw-r--r-- rjr/users      1351 2001-06-16 11:39:17 cpuburn-1.4a/burnP6.S
+drwx------ rjr/users         0 2010-07-12 20:25:57 cpuburn-1.4a/ARM/
+-rw-r--r-- rjr/users      2663 2010-07-09 22:38:25 cpuburn-1.4a/ARM/Design
+-rw------- rjr/users      1133 2010-05-26 22:22:53 cpuburn-1.4a/ARM/burnCortexA8.s
+-rw-r--r-- rjr/users       673 2010-07-09 22:43:44 cpuburn-1.4a/ARM/Makefile
+-rw-r--r-- rjr/users       924 2010-07-09 22:40:30 cpuburn-1.4a/ARM/burnCortexA9.s

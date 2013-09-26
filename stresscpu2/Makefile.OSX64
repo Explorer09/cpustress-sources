@@ -1,0 +1,27 @@
+# El simplo makefile for stressCPU2
+#
+# Unix stuff:
+CFLAGS = -O3 -m64 
+
+stresscpu2: main.o threads_pthreads.o worker.o md_data.o kernel_x86_64_unix_syntax.o
+	cc $(CFLAGS) -o $@ $^
+
+main.o: main.c
+	cc -c $(CFLAGS) -o $@ $^
+
+worker.o: worker.c
+	cc -c $(CFLAGS) -o $@ $^
+
+md_data.o: md_data.c
+	cc -c $(CFLAGS) -o $@ $^
+
+threads_pthreads.o: threads_pthreads.c
+	cc -c $(CFLAGS) -o $@ $^
+
+kernel_x86_64_unix_syntax.o: kernel_x86_64_unix_syntax.s
+	cc -c $(CFLAGS) -o $@ $^
+
+clean:
+	rm -rf *~ *.o stresscpu2 
+
+

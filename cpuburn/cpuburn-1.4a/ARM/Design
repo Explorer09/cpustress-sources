@@ -1,0 +1,71 @@
+Porting Cpuburn on ARM
+
+* Cortex A8
+
+To begin, I studied the Cortex-A8 and I have found that the Neon is the entity which consume the more.
+So all my code is build with Neon's instructions.
+There is only two pipes in the Cortex-A8 so I try to always have this pipes full.
+In the first part I initialize my loop by entering variable in Neons registers.
+Then I begin my loop with Neon's Instructions.
+
+At the begining, I had this loop :
+
+loop:
+    subs    r1, #1
+    bne     loop
+
+I know that my processor is at 600mHz and I do 4 000 000 000 iterations so I can find the number of cycle.And I saw that this loop takes 3 cycles. 
+After that, I added instructions in the loop to see which instructions cost 0 cycle or which instructions can be parallelized.
+This leads me to the actual loop which takes 4 cycles.
+
+At Texas Instruments, I have boards which allow me to measure temperature and power.
+
+Here is the results for temperature :
+	idle :	 	35 C
+	empty loop :	38 C
+	Burn : 		43 C
+
+And the power measure gives:
+	idle :		262 mW
+	empty loop :	365 mW
+	burn : 		693 mW
+
+Measurement of power are done on the Omap3630 in the cpu's rail and measure of temperature with the band gap temperature sensor.
+
+When i quit the loop, I do a test to see if the computation is good, if not the programm exit.
+
+To compile this program, I use codesourcery toolchain :  arm2009q1.
+
+
+* Cortex A9
+
+The Neon is the entity which consumes the more like on Cortex A8.
+So I began my research on the Neon with the same method as Cortex A8.
+Here the empty loop take only one cycle due to "Fast loop mode".
+I managed to use two Neon's entity at the same time : load and multiply.
+We can't use more Neon's instructions in parallel so we need to use other instructions to complete the pipeline.
+So I try with Arm instructions and I managed to add two ARM instructions in parallel of Neon's instructions.
+
+At the end, I have a loop of 3 cycles with 4 instructions in parallel.
+
+I get this results on an omap4 board with two Cortex-A9 :
+
+	 --------------- -----------------------------------------------
+	|		| Delta of temperature  | Delta of consumption	|	
+	|---------------|----------------------------------------------	|
+	|1*burnCortexA9 | + 12 C		| + 0.6 W		|
+	|	        |			|			|
+	|1*burnCortexA8 | + 11 C		| + 0.56 W		|
+	|		|			|			|
+	|2*burnCortexA9 | + 26 C		| + 1.26 W		|
+	|		|			|			|
+	|2*burnCortexA8 | + 28 C		| + 1.16 W		|
+	|		|			|			|
+	----------------------------------------------------------------			
+
+I tested burnCortexA9 on omap3 too and I get a delta of 560 mW between burnCortexA8 and burnCortexA9. (BurnCortexA8 is still the best on omap3).
+
+
+Gregory Herrero
+
+9 Jul 2010
