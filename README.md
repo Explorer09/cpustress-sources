@@ -3,6 +3,8 @@ cpustress-sources
 
 Source code of various programs in CPUstress
 
+Note that the owner of the repository (Explorer09) just mirrors the source code and have no relationships to any of the original authors. If you have problems with the code or the program, please contact the respective author (and not me).
+
 * cpuburn
 
   Authors: Robert J. Redelmeier, Gregory Herrero (ARM code), Otto Strudel (Windows GUI)
