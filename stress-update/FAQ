@@ -1,0 +1,121 @@
+stress Frequently Asked Questions
+
+Table of Contents
+=================
+
+1. General information
+2. Platform specific problems
+3. Internals
+
+1. General information
+======================
+
+1.1 How do I run the program?
+
+The program is supposed to be easy to use.  Here is a basic invocation:
+
+ stress --cpu 8 --io 4 --vm 2 --hdd 1 --timeout 10s
+
+If the command completes successfully then you know that stress did not find
+any problems with your processor, I/O, memory or hard drive.
+
+Make sure that you are actually putting strain on your whole system however.
+For example if you have 16 processors you should not have only 8 CPU workers.
+Note that stress will report any errors it finds: but sometimes for things like
+a disk error the kernel will still give stress the correct data but put a
+warning that you should check for in your system log.
+
+1.2 How do I tune the workload parameters?
+
+If you have a lot of RAM or many CPUs you may really want to crank up the
+number of workers.  You just change the arguments to each worker.  To run
+one thousand CPU workers just do this:
+
+ stress --cpu 1000 --vm 1 --timeout 10s
+
+Concretely this will result in one thousand processes computing the square
+root of a random number and one process allocating and dirtying memory.
+
+1.3 Why is there a timeout option?
+
+If you tell stress to allocate a lot of memory or start tens of thousands of
+workers it is possible to render your system temporarily unresponsive.  Add the
+timeout option to your invocation to make sure that stress will shut itself
+down and you do not have to reboot your system.
+
+1.2 What is the underlying idea?
+
+The basic idea is that there are independent subsystems of a UNIX computer that
+can be put under strain.  So the main idea behind stress is to have worker
+processes that know how to put strain on a specific subsystem, and one main
+process that just forks off as many workers of each type as the user tells it
+to.  At present stress has worker types for processor, memory, I/O, and disk.
+
+1.1 How do I get a bug fixed or a feature added?
+
+Please report bugs or problems to <apw@rossby.metr.ou.edu>.  Please send
+patches to the same address.
+
+1.2 What to do if my kernel panics while running stress?
+
+A usermode program like stress should never be able to crash your kernel.  One
+of the reasons stress was written is to make sure to catch exceptions to this
+rule.  If your kernel does panic while running stress you have found a bug in
+your kernel and should report it to the appropriate vendor or mailing list.
+
+1.3 Is stress a benchmark?
+
+At this point in its history stress is not a benchmark.  It would be better
+classified as a workload generator.
+
+1.4 Why is my CPU getting hammered but not my RAM?
+
+This is because stress if faily conservative in its default options.  It is
+pretty easy to render a system temporarly unusable by forcing the virtual
+memory manager to thrash.  So make sure you understand how much memory you
+have and then pass the appropriate options.  On a dual-core Intel system
+with 3 GB of RAM a reasonable invocation is this:
+
+ stress -m 1 --vm-bytes 2G
+
+2. Platform specific problems
+=============================
+
+2.1 On which platforms is stress known to work?
+
+Nothing that stress does is explicitly architecture dependent.  It tries to use
+system calls that are found on a wide range of UNIX and POSIX platforms.
+
+It is known to work on x86 Linux and FreeBSD, powerpc AIX and Linux, 
+SPARC Solaris, Compaq Alpha Tru64 UNIX, and many others.
+
+2.2 Does stress work on my platform?
+
+If your platform is POSIX-compliant stress will probably compile cleanly and
+work correctly.  If your platform does support the POSIX interfaces and stress
+does not work please report it as a bug.
+
+2.3 What if stress fails to compile on my platform?
+
+Make sure you have GNU make and GNU gcc in your PATH and that they take
+precedence over vendor tools with the same name.
+
+If none of the above work please email <apw@rossby.metr.ou.edu>.
+
+3. Internals
+============
+
+3.1 Why does stress call unlink and then write?
+
+In the disk code you will see stress create a file, unlink it, and then proceed
+to write to it.  This is a standard UNIX programming practice and has the
+benefits that: the process who created the file can still write to it, that
+other processes cannot access the file, and that the file will be deleted by
+the operating system if the process who created it gets unexpectedly killed.
+
+3.1 Why do I not see the file that the disk workers are writing?
+
+To make sure that the file does not get left laying around if stress is
+unexpectedly killed stress unlinks the file before it writes to it.  This is
+perfectly valid.
+
