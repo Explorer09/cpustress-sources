@@ -19,7 +19,9 @@ Note that the owner of the repository (Explorer09) just mirrors the source code 
   
   License: GPLv2 or later
   
-  Website: http://web.archive.org/web/20130520190152/http://weather.ou.edu/~apw/projects/stress/
+  Website: http://people.seas.harvard.edu/~apw/stress/
+
+  (Old website on ou.edu domain is no longer available, but see [archive by Wayback Machine on 2013-05-20](http://web.archive.org/web/20130520190152/http://weather.ou.edu/~apw/projects/stress/))
 
 * stresscpu2
 
