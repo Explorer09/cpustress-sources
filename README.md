@@ -22,7 +22,9 @@ Note that the owner of the repository (Explorer09) just mirrors the source code 
   Website: http://web.archive.org/web/20130520190152/http://weather.ou.edu/~apw/projects/stress/
 
 * stresscpu2
-  
+
+  Note: Precompiled binaries are not included in this repository.
+
   Author: Erik Lindahl
 
   License: GPLv2 or later
