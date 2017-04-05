@@ -7,6 +7,7 @@
 /cpuburn/cpuburn4/* text eol=crlf
 /cpuburn/cpuburn4/*.S text eol=lf
 /cpuburn/cpuburn-1.4a/* text eol=lf
+/lm_sensors text eol=lf
 /stress text eol=lf
 /stresscpu2 text eol=lf
 
